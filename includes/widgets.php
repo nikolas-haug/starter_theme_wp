@@ -1,6 +1,6 @@
 <?php
 
-function wpdev_widgets() {
+function starter_theme_widgets() {
     register_sidebar([
         'name' => __('Starter Theme Sidebar'),
         'id' => 'starter_theme_sidebar',

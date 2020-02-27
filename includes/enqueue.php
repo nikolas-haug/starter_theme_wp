@@ -16,8 +16,10 @@ function starter_theme_enqueue() {
     wp_enqueue_style( 'starter_theme_styles' );
 
     // SCRIPTS
+    wp_register_script( 'navigation_js', $uri . '/js/navigation.js', [], $ver, true );
     wp_register_script( 'starter_theme_js', $uri . '/js/theme.js', [], $ver, true );
 
     wp_enqueue_script( 'jquery' );
-    // wp_enqueue_script( 'theme_js' );
+    wp_enqueue_script( 'navigation_js' );
+    wp_enqueue_script( 'theme_js' );
 }
