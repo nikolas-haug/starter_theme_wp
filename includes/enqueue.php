@@ -11,7 +11,7 @@ function starter_theme_enqueue() {
     $ver = STARTER_THEME_DEV_MODE ? time() : THEME_VERSION;
 
     // STYLES
-    wp_register_style( 'starter_theme_styles', $uri . '/css/main.css', [], $ver );
+    wp_register_style( 'starter_theme_styles', $uri . 'style.css', [], $ver );
 
     wp_enqueue_style( 'starter_theme_styles' );
 
