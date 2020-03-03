@@ -13,29 +13,29 @@ Text Domain: text-domain
 // CONFIG
 //====================================================
 
-@import "src/variables";
-@import "src/mixins";
+@import "sass/variables";
+@import "sass/mixins";
 
 
 //====================================================
 // RESET
 //====================================================
 
-@import "src/normalize";
-@import "src/reset";
-@import "src/base";
+@import "sass/normalize";
+@import "sass/reset";
+@import "sass/base";
 
 
 //====================================================
 // COMPONENTS
 //====================================================
 
-@import "src/components";
-@import "src/layout";
-@import "src/utilities";
+@import "sass/components";
+@import "sass/layout";
+@import "sass/utilities";
 
 //====================================================
 // CUSTOM STYLES
 //====================================================
 
-@import "src/custom";
+@import "sass/custom";
