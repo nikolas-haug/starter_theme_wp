@@ -17,3 +17,6 @@ add_action( 'widgets_init', 'starter_theme_widgets' );
 add_action( 'customize_register', 'starter_theme_cusotomize_register' );
 
 // Shortcodes
+
+// Custom
+include( get_theme_file_path( '/custom/custom-bg-callback.php' ));

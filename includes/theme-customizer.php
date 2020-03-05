@@ -1,6 +1,11 @@
 <?php
 
 function starter_theme_customize_register( $wp_customize ) {
+    // echo '<pre>';
+    // var_dump($wp_customize);
+    // echo '</pre>';
+
+    // Use $wp_customize->get_section/controller/setting to change existing options
 
     // Panel -> Section -> (Setting -> in DB : Control -> Inputs for Settings)
 
