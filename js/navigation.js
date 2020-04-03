@@ -107,4 +107,13 @@
 			}
 		}
 	}( container ) );
+
+	// close menu on click outside container
+	window.addEventListener('mouseup', function(event) {
+		if(event.target != container && event.target.parentNode != container) {
+			container.className = container.className.replace( ' toggled', '' );
+			document.querySelector('.menu-toggle').classList.remove('active');
+		}
+	});
+
 } )();
