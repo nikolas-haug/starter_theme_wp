@@ -6,19 +6,48 @@
 
 // CONTAINERS
 
-.container {
-  @include container-styles
-}
+// $sizes: sm, med, lg;
 
-.container-full {
-  @include container-styles
+// @for $i from 1 to $grid-columns {
+//   @each $size in $sizes {
+//     .col-#{$size}-#{$i} {
+//       padding: 250px;
+//     }
+//   }
+// }
+
+// @each $size in $sizes {
+//   .col-#{$size} {
+//     margin: 500px;
+//   }
+// }
+
+.container {
+  @include container-styles;
 }
 
 .container-stretch {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+  @include container-styles;
 }
+
+// FIXED SIZE CONTAINERS
+
+.container-sm {
+  @include container-size($x-small, $container-gutter);
+  @include container-styles;
+}
+
+.container-med {
+  @include container-size($small, $container-gutter);
+  @include container-styles;
+}
+
+.container-lg {
+  @include container-size($medium, $container-gutter);
+  @include container-styles;
+}
+
+// MAIN CONTAINER BREAKPOINTS 
 
 @include x-small-breakpoint {
   .container {
@@ -51,8 +80,8 @@
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin-right: -0.5rem;
-  margin-left: -0.5rem;
+  margin-right: -#{$grid-padding};
+  margin-left: -#{$grid-padding};
 }
 
 // Clip row by height
@@ -61,9 +90,24 @@
   overflow: hidden;
 }
 
-[class^="col-"] {
-  padding-right: $grid-column-padding;
-  padding-left: $grid-column-padding;
+%col-styles {
+  position: relative;
+  width: 100%;
+  padding-right: $grid-padding;
+  padding-left: $grid-padding;
+}
+
+@mixin col-x-list {
+  @for $i from 1 through $grid-columns {
+      .col-#{$i}, .col-sm-#{$i}, .col-med-#{$i}, .col-lg-#{$i}, .col-sm, .col-med, .col-lg { @extend %col-styles; }
+  }
+}
+
+@include col-x-list;
+
+[class*="row-cols-"] > * {
+  flex: 0 0 100%;
+  max-width: 100%; 
 }
 
 .no-gutters {
@@ -77,22 +121,21 @@
   padding-left: 0;
 }
 
-// Mobile first - < x-small container size
-// col-#{$i} = col-xs
-
-// Equal auto sized columns 
-.col-auto {
-  flex-grow: 1;
-  flex-basis: 0;
-  max-width: 100%;
+// custom spacing for cols
+.row-custom {
+  margin-right: -#{$grid-column-padding-custom};
+  margin-left: -#{$grid-column-padding-custom};
+}
+  
+.row-custom > [class*="col-"] {
+  padding-right: $grid-column-padding-custom;
+  padding-left: $grid-column-padding-custom;
 }
 
-.col {
-  flex-grow: 1;
-  flex-basis: auto;
-  max-width: 100%;
-  padding-right: $grid-column-padding;
-  padding-left: $grid-column-padding;
+@for $i from 1 through $grid-columns {
+  .row-cols-#{$i} {
+    @include row-cols($i);
+  }
 }
 
 @for $i from 1 through $grid-columns {
@@ -107,21 +150,14 @@
 
 // Between x-small and small breakpoints
 @include x-small-breakpoint {
-  .container-sm {
-    @include container-size($x-small, $container-gutter);
-    @include container-styles
-  }
 
+  // Auto-sized columns
   .col-sm {
-    flex-grow: 1;
-    flex-basis: auto;
-    max-width: 100%;
-  }
-
-  // Equal auto sized columns 
-  .col-sm-auto {
-    flex-grow: 1;
+    -ms-flex-preferred-size: 0;
     flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    min-width: 0;
     max-width: 100%;
   }
 
@@ -135,37 +171,23 @@
     }
   }
 
-  // Justify and align content
-  .justify-content-sm-center {
-    justify-content: center;
-  }
-
-  .justify-content-sm-between {
-    justify-content: space-between;
-  }
-
-  .justify-content-sm-around {
-    justify-content: space-around;
+  @for $i from 1 through $grid-columns {
+    .row-cols-sm-#{$i} {
+      @include row-cols($i);
+    }
   }
 }
 
 // Between small and medium breakpoints
 @include small-breakpoint {
-  .container-med {
-    @include container-size($small, $container-gutter);
-    @include container-styles
-  }
 
+  // Auto-sized columns
   .col-med {
-    flex-grow: 1;
-    flex-basis: auto;
-    max-width: 100%;
-  }
-
-  // Equal auto sized columns
-  .col-med-auto {
-    flex-grow: 1;
+    -ms-flex-preferred-size: 0;
     flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    min-width: 0;
     max-width: 100%;
   }
 
@@ -179,37 +201,23 @@
     }
   }
 
-  // Justify and align content
-  .justify-content-med-center {
-    justify-content: center;
-  }
-
-  .justify-content-med-between {
-    justify-content: space-between;
-  }
-
-  .justify-content-med-around {
-    justify-content: space-around;
+  @for $i from 1 through $grid-columns {
+    .row-cols-med-#{$i} {
+      @include row-cols($i);
+    }
   }
 }
 
 // Between medium and large breakpoints
 @include medium-breakpoint {
-  .container-lg {
-    @include container-size($medium, $container-gutter);
-    @include container-styles
-  }
 
+  // Auto-sized columns
   .col-lg {
-    flex-grow: 1;
-    flex-basis: auto;
-    max-width: 100%;
-  }
-
-  // Equal auto sized columns
-  .col-lg-auto {
-    flex-grow: 1;
+    -ms-flex-preferred-size: 0;
     flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    min-width: 0;
     max-width: 100%;
   }
 
@@ -223,16 +231,9 @@
     }
   }
 
-  // Justify and align content
-  .justify-content-lg-center {
-    justify-content: center;
-  }
-
-  .justify-content-lg-between {
-    justify-content: space-between;
-  }
-
-  .justify-content-lg-around {
-    justify-content: space-around;
+  @for $i from 1 through $grid-columns {
+    .row-cols-lg-#{$i} {
+      @include row-cols($i);
+    }
   }
 }

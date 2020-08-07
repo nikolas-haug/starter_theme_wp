@@ -5,21 +5,21 @@
 */
 
 //===================================================
-// Main nav (built for wordpress dynamic menus)
+// Basic Navigation (built for wordpress dynamic menus)
 //
 // Use this in the template file:
 //
-//              <nav id="site-navigation" class="main-navigation">
+//  <nav id="site-navigation" class="main-navigation">
 //
-//                <!-- Optional navbar brand (need to add flex styles for this and adjust mobile button width/etc) -->
-//                <!-- <a href="#" class="navbar-brand">Brand</a> -->
+//    <!-- Optional navbar brand (need to add flex styles for this and adjust mobile button width/etc) -->
+//    <!-- <a href="#" class="navbar-brand">Brand</a> -->
 //
-//                  <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-//                      <span class="hamburger"></span>
-//                  </button>
-//              <!-- Wordpress dynamic nav goes here -->
-//              <ul><li><a></a></li></ul>
-//              </nav>
+//      <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false aria-label="Toggle Nav Menu">
+//          <span class="hamburger"></span>
+//      </button>
+//  <!-- Wordpress dynamic nav goes here -->
+//  <ul><li><a></a></li></ul>
+//  </nav>
 //
 //===================================================
 .main-navigation {
@@ -100,7 +100,7 @@
 @media (max-width: 500px) {
   body {
     // Need to adjust this according to collapsed menu size/padding
-    margin-top: calc(#{$mobile-navbar-padding} * 2.5);
+    // margin-top: calc(#{$mobile-navbar-padding} * 2.5);
   }
   .main-navigation {
     position: fixed;
@@ -141,20 +141,14 @@
 //===================================================
 // Secondary nav (built for wordpress dynamic menus)
 //
-// <div class="container-lg">
-//   <div class="row">
-//       <div class="col-12">
-//           <nav class="slider-menu">
-//              WP MENU BELOW
-//               <ul>
-//                   <li><a href="index.html">Welcome</a></li>
-//               </ul>
-//              END WP MENU
-//           </nav>
-//           <div class="slider-menu__toggler"><span></span></div>
-//       </div>
-//   </div>
-// </div>
+// <nav class="slider-menu">
+//    WP MENU BELOW
+//     <ul>
+//         <li><a href="index.html">Welcome</a></li>
+//     </ul>
+//    END WP MENU
+// </nav>
+// <div class="slider-menu__toggler"><span></span></div>
 //
 //===================================================
 /*
@@ -211,7 +205,7 @@
 
 /*
   * SLIDING MENU PANEL - Desktop view
-  */
+*/
 .slider-menu {
   height: 100%;
   background: $global-background-color;
@@ -360,7 +354,6 @@ a.accent-button {
   &:hover,
   &:focus,
   &:active {
-    color: $accent-button-color-hover;
     border: 1px solid darken($accent-button-background-color, 10%);
     background: darken($accent-button-background-color, 10%);
   }
@@ -418,8 +411,9 @@ a.full-button {
   padding: 1rem;
   outline: none;
   background: $input-background;
+  color: $input-color;
   margin-bottom: 0.5rem;
-  font-size: 1.5rem;
+  font-size: $font-size-primary;
   width: 100%;
   max-width: 100%;
   line-height: 1;
@@ -575,4 +569,48 @@ textarea {
 
 .scroll-top-btn:hover {
   background: rgba(0, 0, 0, 0.9);
+}
+
+// Code block styling
+pre {
+  border: 0;
+  border-radius: $border-radius;
+  background: $code-background;
+  padding: 1rem;
+  tab-size: 2;
+  color: $code-color;
+  font-family: $code-family;
+  font-size: $code-size;
+  margin: 0 0 $typography-margins 0;
+
+  code {
+    font-family: $code-family;
+    line-height: 1.2;
+  }
+}
+
+// Keyboard input
+kbd {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  color: #333;
+  display: inline-block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 0 0.1em;
+  padding: 0.1em 0.6em;
+  text-shadow: 0 1px 0 #fff;
+}
+
+// Inline code styling
+:not(pre) > code {
+  color: $code-color;
+  background: $code-background;
+  font-family: $code-family;
+  font-size: $code-size;
+  padding: 0 0.2rem;
+  border-radius: $border-radius;
 }
